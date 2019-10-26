@@ -2,7 +2,7 @@
 # DewarpNet 
 This repository contains the codes for [**DewarpNet**](https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf) training.
 ![](dwnet.png)
-#### Training
+### Training
 - Prepare Data: `train.txt` & `val.txt`. Contents should be like: 
 ```
 1/824_8-cp_Page_0503-7Ns0001
@@ -13,17 +13,17 @@ This repository contains the codes for [**DewarpNet**](https://www3.cs.stonybroo
 - Train Texture Mapping Network:
 `python trainbm.py --arch dnetccnl --img_rows 128 --img_cols 128 --img_norm --n_epoch 250 --batch_size 50 --l_rate 0.0001 --tboard --data_path ./DewarpNet/doc3d`
 
-#### Inference:
+### Inference:
 - Run:
 `python infer.py --wc_model_path ./eval/models/unetnc_doc3d.pkl --bm_model_path ./eval/models/dnetccnl_doc3d.pkl --show`
 
-#### Models:
+### Models:
 - Pre-trained models are available [here](https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view?usp=sharing).
 
-#### Dataset: 
+### Dataset: 
 - The *doc3D dataset* can be downloaded using the scripts [here](https://github.com/cvlab-stonybrook/doc3D-dataset).
 
-#### More Stuff:
+### More Stuff:
 - [Demo](https://sagniklp.github.io/dewarpnet-demo/)
 - [Project Page](https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/)
 - [Doc3D Rendering Codes](https://github.com/sagniklp/doc3D-renderer)
