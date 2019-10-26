@@ -97,11 +97,22 @@ class Gradloss(torch.nn.Module):
 			
 		pred_gradx,pred_grad_y=gradient(pred,self.windowx,self.windowy,self.window_size, self.padding,channel)
 		label_gradx,label_grad_y=gradient(label,self.windowx,self.windowy,self.window_size,self.padding, channel)
+		#label_grad=torch.sqrt((label_gradx*label_gradx) + (label_grad_y*label_grad_y))
+		#w=((label_grad[:,0,:,:]>=1)&(label_grad[:,1,:,:]>=1)&(label_grad[:,2,:,:]>=1)).float()*0.7
+		#msk=((label[:,0,:,:]!=0)&(label[:,1,:,:]!=0)&(label[:,2,:,:]!=1)).float()
+		#w+=msk*0.2
+		#w+=(1-msk)*0.1
+		# w=w.expand_as(pred)
+
 
 		l1_loss=nn.L1Loss()
+		#l2_loss=nn.MSELoss()
 		grad_loss=l1_loss(pred_gradx,label_gradx)+l1_loss(pred_grad_y,label_grad_y)
+		# w_grad_loss=(label-pred)**2
+		# w_grad_loss=w*w_grad_loss
+		# w_grad_loss=torch.mean(w_grad_loss)
 
-		return grad_loss
+		return grad_loss#, w_grad_loss
 
 # # For testing
 # if __name__ == '__main__':

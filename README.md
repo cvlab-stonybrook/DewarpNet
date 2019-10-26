@@ -1,54 +1,39 @@
-## DewarpNet: An end-to-end approach for document dewarping using single image (In Progress).
+# DewarpNet 
+This repository contains the codes for [**DewarpNet**](https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf) training.
+![](dwnet.png)
+#### Training
+- Prepare Data: `train.txt` & `val.txt`. Contents should be like: 
+```
+1/824_8-cp_Page_0503-7Ns0001
+1/824_1-cp_Page_0504-2Cw0001
+```
+- Train Shape Network:
+`python trainwc.py --arch unetnc --data_path ./data/DewarpNet/doc3d/ --batch_size 50 --tboard`
+- Train Texture Mapping Network:
+`python trainbm.py --arch dnetccnl --img_rows 128 --img_cols 128 --img_norm --n_epoch 250 --batch_size 50 --l_rate 0.0001 --tboard --data_path ./DewarpNet/doc3d`
 
-### This codes are heavily structured on pytorch-semseg (https://github.com/meetshah1995/pytorch-semseg)
+#### Inference:
+- Run:
+`python infer.py --wc_model_path ./eval/models/unetnc_doc3d.pkl --bm_model_path ./eval/models/dnetccnl_doc3d.pkl --show`
 
-### Requirements
+#### Models:
+- Pre-trained models are available [here](https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view?usp=sharing).
 
-* pytorch >=0.4.0
-* torchvision ==0.2.0
-* visdom >=1.0.1 (for loss and results visualization)
-* scipy
-* tqdm
+#### Dataset: 
+- The *doc3D dataset* can be downloaded using the scripts [here](https://github.com/cvlab-stonybrook/doc3D-dataset).
 
-#### One-line installation
-    
-`pip install -r requirements.txt`
-
-#### Training codes:
-/train[...].py
-- trainS3dbmnoimg.py/trainS3dbmnoimgv2.py : code to train backward mapping regression from world coordinates (model:dnetccnl)
-- trainS3dWchtanHglassCRGB.py : code to train backward mapping regression from world coordinates (model:hourglass_cat)
-- trainS3dWchtanHglassRGB.py : code to train backward mapping regression from world coordinates (model:hourglass)
-- trainS3dWchtanUnetNCRGB.py/trainS3dWchtanUnetNCRGBv2.py : code to train world coord regression from RGB Image (model: unetnc)
-
-#### Testing codes:
-/test[...].py
-- testBatch.py : test wc regression in a batch
-- testBenchmE2E.py : test dewarping on benchmark data
-- valWc.py : validate wc regression models
-
-#### Loader:
-/src/loader/
-- swat3dbmnoimg_loader.py : loader for backward mapping (alb,wc,bm)
-- swat3dbmnoimgd_loader.py : loader for backward mapping (alb,depth,wc,bm)
-- swat3de2e_loader.py : loader for end-to-end model(alb,RGB img,wc,bm)
-- swat3dlapsrn_loader.py : loader for lapsrn model(RGB img,wc)
-- swat3dwc_loader.py : loader for wc regression model(RGB img,wc)
-- swat3dwcg_loader.py : loader for wc regression model(Gray img,wc)
-
-#### Model:
-/src/models/
-- densenet_.py : Densenet enc-dec with single fc layer
-- densenet.py : Densenet enc-dec with two intermediate fc layers and dropout
-- densenetcc.py : Densenet enc-dec with two intermediate fc layers and dropout + initial layer coordconv
-- densenetccnl.py : Densenet enc-dec + initial layer coordconv
-- densenetns.py : Densenet enc-dec with single fc layer no dropout and no final activation
-- hourglass_cat.py : Hourglass module with concatenation (2 unets)
-- hourglass.py : Hourglass module with residual connection (2 unets)
-- lapsrn.py : LAPSRN for upscaling
-- unet.py : Unet with center cropped skip connections
-- unetnc.py : Unet with skip connections (no crop)
-
-
-
-
+#### More Stuff:
+- [Demo](https://sagniklp.github.io/dewarpnet-demo/)
+- [Project Page](https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/)
+- [Doc3D Rendering Codes](https://github.com/sagniklp/doc3D-renderer)
+### Citation:
+If you use the dataset or this code, please consider citing our work-
+```
+@inproceedings{SagnikKeICCV2019, 
+Author = {Sagnik Das*, Ke Ma*, Zhixin Shu, Dimitris Samaras, Roy Shilkrot}, 
+Booktitle = {Proceedings of International Conference on Computer Vision}, 
+Title = {DewarpNet: Single-Image Document Unwarping With Stacked 3D and 2D Regression Networks}, 
+Year = {2019}}   
+```
+#### Acknowledgements:
+- These codes are heavily structured on [pytorch-semseg](https://github.com/meetshah1995/pytorch-semseg).
