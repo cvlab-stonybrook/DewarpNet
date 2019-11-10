@@ -1,5 +1,5 @@
 # Densenet decoder encoder with intermediate fully connected layers and dropout
- 
+
 import torch
 import torch.backends.cudnn as cudnn
 import torch.nn as nn
@@ -27,7 +27,7 @@ def add_coordConv_channels(t):
     yy_coord=yy_coord*2 - 1
     xx_coord=torch.from_numpy(xx_coord).float()
     yy_coord=torch.from_numpy(yy_coord).float()
-    
+
     if t.is_cuda:
     	xx_coord=xx_coord.cuda()
     	yy_coord=yy_coord.cuda()
@@ -62,13 +62,13 @@ class DenseBlockEncoder(nn.Module):
             if i > 0:
                 next_output = 0
                 for no in outputs:
-                    next_output = next_output + no 
+                    next_output = next_output + no
                 outputs.append(next_output)
             else:
                 outputs.append(layer(inputs))
         return outputs[-1]
 
-# Dense block in encoder. 
+# Dense block in encoder.
 class DenseBlockDecoder(nn.Module):
     def __init__(self, n_channels, n_convs, activation=nn.ReLU, args=[False]):
         super(DenseBlockDecoder, self).__init__()
@@ -90,7 +90,7 @@ class DenseBlockDecoder(nn.Module):
             if i > 0:
                 next_output = 0
                 for no in outputs:
-                    next_output = next_output + no 
+                    next_output = next_output + no
                 outputs.append(next_output)
             else:
                 outputs.append(layer(inputs))
@@ -124,7 +124,7 @@ class DenseTransitionBlockDecoder(nn.Module):
         )
     def forward(self, inputs):
         return self.main(inputs)
-        
+
 ## Dense encoders and decoders for image of size 128 128
 class waspDenseEncoder128(nn.Module):
     def __init__(self, nc=1, ndf = 32, ndim = 128, activation=nn.LeakyReLU, args=[0.2, False], f_activation=nn.Tanh, f_args=[]):
@@ -160,10 +160,10 @@ class waspDenseEncoder128(nn.Module):
         )
 
     def forward(self, input):
-    	input=add_coordConv_channels(input)
+        input=add_coordConv_channels(input)
         output = self.main(input).view(-1,self.ndim)
         #print(output.size())
-        return output   
+        return output
 
 class waspDenseDecoder128(nn.Module):
     def __init__(self, nz=128, nc=1, ngf=32, lb=0, ub=1, activation=nn.ReLU, args=[False], f_activation=nn.Hardtanh, f_args=[]):
@@ -214,7 +214,7 @@ class dnetccnl(nn.Module):
     #filters -> ndf    | encoder first layer
     #img_size(h,w) -> ndim
     #out_channels  -> optical flow (x,y)
- 
+
     def __init__(self, img_size=128, in_channels=1, out_channels=2, filters=32,fc_units=100):
         super(dnetccnl, self).__init__()
         self.nc=in_channels
@@ -240,4 +240,4 @@ class dnetccnl(nn.Module):
         # print torch.max(decoded)
         # print torch.min(decoded)
 
-        return decoded    
+        return decoded
