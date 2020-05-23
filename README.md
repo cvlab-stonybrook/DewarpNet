@@ -5,6 +5,9 @@
 # DewarpNet 
 This repository contains the codes for [**DewarpNet**](https://www3.cs.stonybrook.edu/~cvl/projects/dewarpnet/storage/paper.pdf) training.
 
+### Recent Updates
+- **[May, 2020]** Added evaluation images and an important note about Matlab SSIM.
+
 ### Training
 - Prepare Data: `train.txt` & `val.txt`. Contents should be like: 
 ```
