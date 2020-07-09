@@ -30,7 +30,7 @@ To reproduce the quantitative results reported in the paper use the images avail
 - **[Important note about Matlab version]** We noticed that Matlab 2020a uses a different SSIM implementation which gives a better MS-SSIM score (0.5623). Whereas we have used Matlab 2018b. Please compare the scores according to your Matlab version. 
 
 ### Models:
-- Pre-trained models are available [here](https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view?usp=sharing).
+- Pre-trained models are available [here](https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view?usp=sharing). These models are captured prior to  end-to-end training, thus won't give you the end-to-end results reported in Table 2 of the paper. Use the images provided above to get the exact numbers as Table 2. 
 
 ### Dataset: 
 - The *doc3D dataset* can be downloaded using the scripts [here](https://github.com/cvlab-stonybrook/doc3D-dataset).
