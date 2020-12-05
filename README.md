@@ -8,6 +8,7 @@ This repository contains the codes for [**DewarpNet**](https://www3.cs.stonybroo
 
 ### Recent Updates
 - **[May, 2020]** Added evaluation images and an important note about Matlab SSIM.
+- **[Dec, 2020]** Added OCR evaluation Details.
 
 ### Training
 - Prepare Data: `train.txt` & `val.txt`. Contents should be like: 
@@ -34,13 +35,14 @@ To reproduce the quantitative results reported in the paper use the images avail
 - The 25 images used for OCR evaluation is ```/eval/ocr_eval/ocr_files.txt```
 - The corresponding ground-truth text is given in ```/eval/ocr_eval/tess_gt.json```
 - For the OCR errors reported in the paper we had used cv2.blur as pre-processing which gives higher error in all the cases. For convenience, we provide the updated numbers (without using blur) in the following table: 
+
 |      Method      |    ED   |       CER      | ED  (no blur) | CER (no blur) |
 |:----------------:|:-------:|:--------------:|:-------------:|:-------------:|
 |      DocUNet     | 1975.86 |  0.4656(0.263) |    1671.80    | 0.403 (0.256) |
 | DocUNet on Doc3D | 1684.34 | 0.3955 (0.272) |    1296.00    | 0.294 (0.235) |
 |     DewarpNet    | 1288.60 | 0.3136 (0.248) |    1007.28    | 0.249 (0.236) |
 |  DewarpNet (ref) | 1114.40 | 0.2692 (0.234) |     812.48    | 0.204 (0.228) |
-
+- We had used default Tesseract (v4.1.0) configuration for evaluation with PyTesseract (v0.2.6).
 
 ### Models:
 - Pre-trained models are available [here](https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view?usp=sharing). These models are captured prior to  end-to-end training, thus won't give you the end-to-end results reported in Table 2 of the paper. Use the images provided above to get the exact numbers as Table 2. 
