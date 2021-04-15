@@ -14,7 +14,7 @@ import random
 from tqdm import tqdm
 from torch.utils import data
 
-from augmentationsk import data_aug, tight_crop
+from .augmentationsk import data_aug, tight_crop
 
 class doc3dwcLoader(data.Dataset):
     """
