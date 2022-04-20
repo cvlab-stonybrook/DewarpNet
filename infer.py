@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.models as models
 import cv2
+#import scipy.misc as m ## USE scipy (< v1.2.0) TO READ THE IMAGE TO PRODUCE THE RESULTS REPORTED IN THE PAPER
 from torch.autograd import Variable
 from torch.utils import data
 from tqdm import tqdm
@@ -60,6 +61,16 @@ def test(args,img_path,fname):
     imgorg = cv2.imread(img_path)
     imgorg = cv2.cvtColor(imgorg, cv2.COLOR_BGR2RGB)
     img = cv2.resize(imgorg, wc_img_size)
+    
+    '''
+    # Alternatively use scipy (< v1.2.0) 
+    # TO PRODUCE THE RESULTS REPORTED IN THE PAPER
+    # Comment line 61-63 and uncomment 68-69
+    # For details refer to https://github.com/cvlab-stonybrook/DewarpNet/issues/38 
+    imgorg = m.imread(img_path,mode='RGB')
+    img = m.imresize(imgorg, wc_loaderimg_size)
+    '''
+    
     img = img[:, :, ::-1]
     img = img.astype(float) / 255.0
     img = img.transpose(2, 0, 1) # NHWC -> NCHW
