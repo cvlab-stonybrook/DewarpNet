@@ -1,5 +1,5 @@
 hdf5storage
 tqdm
-scipy
+scipy==1.1.0
 numpy
 matplotlib
