@@ -28,7 +28,7 @@ This repository contains the codes for [**DewarpNet**](https://www3.cs.stonybroo
 
 ### Evaluation (Image Metrics):
 - We use the same evaluation code as [DocUNet](https://www3.cs.stonybrook.edu/~cvl/docunet.html). 
-To reproduce the quantitative results reported in the paper use the images available [here](https://drive.google.com/drive/folders/1aPfQHGrGxpuIbYLONydbSkGNygRX2z2P?usp=sharing).
+To reproduce the quantitative results reported in the paper use the images available [here](https://drive.google.com/drive/folders/1OOcChuWphGJ22PC_vAL2DV872ssWwdRX?usp=share_link).
 
 - **[Important note about Matlab version]** We noticed that Matlab 2020a uses a different SSIM implementation which gives a better MS-SSIM score (0.5623). Whereas we have used Matlab 2018b. Please compare the scores according to your Matlab version. 
 
@@ -46,8 +46,8 @@ To reproduce the quantitative results reported in the paper use the images avail
 - We had used the Tesseract (v4.1.0) default configuration for evaluation with PyTesseract (v0.2.6).
 
 ### Models:
-- Pre-trained models are available [here](https://drive.google.com/file/d/1hJKCb4eF1AJih_dhZOJSF5VR-ZtRNaap/view?usp=sharing). These models are captured prior to  end-to-end training, thus won't give you the end-to-end results reported in Table 2 of the paper. Use the images provided above to get the exact numbers as Table 2.
-- Final models are avialable [here](https://drive.google.com/drive/folders/1yFiYBIkrY61IuRniiV4MLF3jyrNeVd2I?usp=sharing). These models can be used to unwarp DocUNet images and **reproduce the results in the ICCV paper**.  
+- Pre-trained models are available [here](https://drive.google.com/file/d/114NfUhxlf_XV0uV7ZTdJTUxME0cW0Ty9/view?usp=share_link). These models are captured prior to  end-to-end training, thus won't give you the end-to-end results reported in Table 2 of the paper. Use the images provided above to get the exact numbers as Table 2.
+- Final models are available [here](https://drive.google.com/drive/folders/1yFiYBIkrY61IuRniiV4MLF3jyrNeVd2I?usp=sharing). These models can be used to unwarp DocUNet images and **reproduce the results in the ICCV paper**.  
 
 ### Dataset: 
 - The *doc3D dataset* can be downloaded using the scripts [here](https://github.com/cvlab-stonybrook/doc3D-dataset).
